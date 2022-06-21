@@ -54,7 +54,7 @@ interface IERC4973 {
     function burn(uint256 _tokenId) external;
 }
 
-contract ERC4973 is ERC165Storage, IERC721Metadata, IERC4973 {
+contract SFT is ERC165Storage, IERC721Metadata, IERC4973 {
     string public name;
     string public symbol;
     uint256 public tokenId;
@@ -74,12 +74,12 @@ contract ERC4973 is ERC165Storage, IERC721Metadata, IERC4973 {
     }
 
     modifier onlyAdmin() {
-        require(msg.sender == admin, "Only owner");
+        require(msg.sender == admin, "Only admin");
         _;
     }
 
-    function changeOwner(address newAdmin) external onlyAdmin {
-        require(newAdmin != address(0), "Zero owner address");
+    function changeAdmin(address newAdmin) external onlyAdmin {
+        require(newAdmin != address(0), "Zero admin address");
         admin = newAdmin;
         emit AdminChanged(newAdmin, block.timestamp);
     }
@@ -94,17 +94,16 @@ contract ERC4973 is ERC165Storage, IERC721Metadata, IERC4973 {
 
     function burn(uint256 _tokenId) external {
         require(
-            _owners[_tokenId] == msg.sender || msg.sender == admin,
+            ownerOf(_tokenId) == msg.sender || msg.sender == admin,
             "Not the owner or admin"
         );
         address _to = _owners[_tokenId];
         delete _owners[_tokenId];
         delete _tokenURI[_tokenId];
-
         emit Revoke(_to, _tokenId);
     }
 
-    function ownerOf(uint256 _tokenId) external view returns (address) {
+    function ownerOf(uint256 _tokenId) public view returns (address) {
         address owner = _owners[_tokenId];
         require(owner != address(0), "ownerOf: token doesn't exist");
         return owner;
