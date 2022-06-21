@@ -111,3 +111,11 @@ function tokenURI(uint256 _tokenId) external view returns (string memory)
 | \_tokenId | uint256 | Token Id    |
 
 Returns the uri of particular token if it exits.
+
+# Testing
+
+### Run forge tests
+
+```
+forge test
+```
