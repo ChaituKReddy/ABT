@@ -65,7 +65,9 @@ contract ERC4973 is ERC165Storage, IERC721Metadata, IERC4973 {
 
     event AdminChanged(address newAdmin, uint256 timestamp);
 
-    constructor() {
+    constructor(string memory _name, string memory _symbol) {
+        name = _name;
+        symbol = _symbol;
         admin = msg.sender;
         _registerInterface(type(IERC721Metadata).interfaceId);
         _registerInterface(type(IERC4973).interfaceId);
@@ -90,7 +92,7 @@ contract ERC4973 is ERC165Storage, IERC721Metadata, IERC4973 {
         emit Attest(_to, tokenId);
     }
 
-    function burn(uint256 _tokenId) external override {
+    function burn(uint256 _tokenId) external {
         require(
             _owners[_tokenId] == msg.sender || msg.sender == admin,
             "Not the owner or admin"
@@ -102,19 +104,15 @@ contract ERC4973 is ERC165Storage, IERC721Metadata, IERC4973 {
         emit Revoke(_to, _tokenId);
     }
 
-    function ownerOf(uint256 _tokenId) public view virtual returns (address) {
+    function ownerOf(uint256 _tokenId) external view returns (address) {
         address owner = _owners[_tokenId];
         require(owner != address(0), "ownerOf: token doesn't exist");
         return owner;
     }
 
-    function tokenURI(uint256 _tokenId)
-        public
-        view
-        virtual
-        override
-        returns (string memory)
-    {
+    function tokenURI(uint256 _tokenId) external view returns (string memory) {
+        address owner = _owners[_tokenId];
+        require(owner != address(0), "tokenURI: token doesn't exist");
         return _tokenURI[_tokenId];
     }
 }
