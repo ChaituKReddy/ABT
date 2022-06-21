@@ -51,10 +51,10 @@ function admin() public view returns(address)
 
 Returns the current admin of the contract.
 
-### ChangeOwner
+### ChangeAdmin
 
 ```solidity
-function changeOwner(address newAdmin) external onlyAdmin
+function changeAdmin(address newAdmin) external onlyAdmin
 ```
 
 | Name     | Type    | Description               |
@@ -91,7 +91,7 @@ Allows the `admin` of the contract or the owner of the token to burn the token.
 ### OwnerOf
 
 ```solidity
-function ownerOf(uint256 _tokenId) external view returns (address)
+function ownerOf(uint256 _tokenId) public view returns (address)
 ```
 
 | Name      | Type    | Description |
@@ -111,3 +111,11 @@ function tokenURI(uint256 _tokenId) external view returns (string memory)
 | \_tokenId | uint256 | Token Id    |
 
 Returns the uri of particular token if it exits.
+
+# Testing
+
+### Run forge tests
+
+```
+forge test
+```
