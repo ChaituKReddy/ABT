@@ -119,11 +119,3 @@ Returns the uri of particular token if it exits.
 ```
 forge test
 ```
-
-# Deployemnt
-
-### Run forge scripts
-
-```
-forge script script/SFT.s.sol --rpc-url $RINKEBY_RPC_URL --private-key $PRIVATE_KEY --broadcast -vvvv
-```
