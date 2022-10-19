@@ -1,9 +1,7 @@
-[![Foundry][foundry-badge]][foundry]
+[![Foundry][foundry-badge]][foundry] [![Developed][dev-badge]][dev]
 
 [foundry]: https://getfoundry.sh/
 [foundry-badge]: https://img.shields.io/badge/Built%20with-Foundry-FFDB1C.svg
-
-[![Developed][dev-badge]][dev]
 
 [dev]: https://github.com/ChaituKReddy
 [dev-badge]: https://img.shields.io/badge/Developed%20by-Chaitu-blue
