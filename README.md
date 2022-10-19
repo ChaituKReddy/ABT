@@ -1,3 +1,8 @@
+[![Foundry][foundry-badge]][foundry]
+
+[foundry]: https://getfoundry.sh/
+[foundry-badge]: https://img.shields.io/badge/Built%20with-Foundry-FFDB1C.svg
+
 # Account Bound Tokens
 
 <p> ABT or Soul Bound tokens are non-transferrable tokens that - once assigned cannot be transferred to any other accounts. The holder of the token can burn the token. These tokens can be used to represent identity.</p>
